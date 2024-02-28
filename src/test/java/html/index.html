@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+Natures' first green is gold,
+Her husband is tall.
+Her early leaf's a flower,
+<span> But only so an hour.</span>
+    <p></p>
+    <button id="sumBtn">SUM</button>
+    <input type="number" id="operand1">
+    <span>+</span>
+    <input type="number" id="operand2">
+
+    <span>=</span>
+    <span id="result"></span>
+<p></p>
+    <button id="DiffBtn">Diff</button>
+    <input type="number" id="operand3">
+    <span>-</span>
+    <input type="number" id="operand4">
+    <span>=</span>
+    <span id="resDif"></span>
+    <p> </p>
+    <button id="MultBtn">Mult</button>
+    <input type="number" id="operand5">
+    <span>*</span>
+    <input type="number" id="operand6">
+    <span>=</span>
+    <span id="resMult"></span>
+    <p> </p>
+    <button id="DivBtn">Div</button>
+    <input type="number" id="operand7">
+    <span>/</span>
+    <input type="number" id="operand8">
+    <span>=</span>
+    <span id="resDiv"></span>
+</div>
+<script>
+    let operand1 = document.querySelector('#operand1');
+    let operand2 = document.querySelector('#operand2');
+    let sumBtn = document.querySelector('#sumBtn');
+    let result = document.querySelector('#result');
+
+    sumBtn.onclick = function(){
+    let res = +operand1.value + +operand2.value;
+    result.innerText = res;
+    console.log(res);
+    }
+
+    let operand3 = document.querySelector('#operand3');
+    let operand4 = document.querySelector('#operand4');
+    let DiffBtn = document.querySelector('#DiffBtn');
+    let resDif = document.querySelector('#resDif');
+
+    DiffBtn.onclick = function(){
+    let res = +operand3.value - +operand4.value;
+    resDif.innerText = res;
+    }
+
+    let operand5 = document.querySelector('#operand5');
+    let operand6 = document.querySelector('#operand6');
+    let MultBtn = document.querySelector('#MultBtn');
+    let resMult = document.querySelector('#resMult');
+    MultBtn.onclick = function(){
+    let res = +operand5.value * +operand6.value;
+    resMult.innerText = res;
+    }
+     let operand7 = document.querySelector('#operand7');
+    let operand8 = document.querySelector('#operand8');
+     let DivBtn = document.querySelector('#DivBtn');
+    let resDiv = document.querySelector('#resDiv');
+
+    DivBtn.onclick = function(){
+    let res = +operand7.value / +operand8.value;
+    resDiv.innerText = res;
+    }
+</script>
+</body>
+</html>
