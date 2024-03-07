@@ -20,7 +20,8 @@ import java.time.Duration;
 
 public class BaseTest { // Эта строка объявляет начало определения класса BaseTest. Класс является шаблоном или чертежом для создания объектов.
     private static final ThreadLocal<WebDriver> driverThreadLocal
-            = new ThreadLocal<>(); //Эта строка объявляет статическое приватное поле driverThreadLocal, которое является объектом класса ThreadLocal. Он используется для хранения объектов типа WebDriver в потоке исполнения.
+            = new ThreadLocal<>(); //Эта строка объявляет статическое приватное поле driverThreadLocal,
+    // которое является объектом класса ThreadLocal. Он используется для хранения объектов типа WebDriver в потоке исполнения.
     // ThreadLocal - это класс в Java, который позволяет создавать локальные переменные, специфичные для каждого потока.
     // Каждый поток имеет свою собственную копию переменной, хранящейся в ThreadLocal, и доступ может быть получен только из соответствующего потока.
     // Это полезно, когда вам нужно создать объект, который будет уникальным для каждого потока, и при этом изолировать состояние между потоками.
@@ -60,18 +61,19 @@ public class BaseTest { // Эта строка объявляет начало �
             // options.addArguments("-headless");
             driverThreadLocal.set(new FirefoxDriver(options));
         }
-        else if (browser.equalsIgnoreCase("safari")) {
+       /* else if (browser.equalsIgnoreCase("safari")) {
             SafariOptions options = new SafariOptions();
             options.setCapability("language", "en");
             driverThreadLocal.set(new SafariDriver());
-        } else if (browser.equalsIgnoreCase("edge")) {
+        }
+        else if (browser.equalsIgnoreCase("edge")) {
             // Настройки для Edge
             WebDriverManager.edgedriver().setup();
             EdgeOptions options = new EdgeOptions();
             options.setCapability("language", "en");
             //options.addArguments("--headless");
             driverThreadLocal.set(new EdgeDriver(options));
-        }
+        }*/
         else{throw new IllegalArgumentException("Invalid browser "+browser); }
 
         // Этот блок кода получает веб-драйвер с помощью метода getDriver(), максимизирует окно браузера,

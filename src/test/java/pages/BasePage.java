@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
+// BasePage служит базовым классом для всех страниц тестового приложения
 public class BasePage {
 
     protected static WebDriver driver;
