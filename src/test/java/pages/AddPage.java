@@ -38,42 +38,42 @@ public class AddPage extends BasePage {
 
     }
     //method po avtozapolneniu polei
-    public void fillFormAndSave(){
-        nameField.sendKeys(NameAndLastnameGenerator.generateName());
-        lastNameField.sendKeys(NameAndLastnameGenerator.generateLastName());
-        phoneField.sendKeys(PhoneNumberGenerator.generatePhoneNumber());
-        emailField.sendKeys(EmailGenerator.generateEmail(4,3,2));
-        addressField.sendKeys(AddressGenerator.generateAddress());
-        descriptionField.sendKeys("PM");
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement saveButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//b[contains(text(),'Save')]")));
-        saveButton.click();
-    }
-
-//    public void fillFormAndSave1(Contact contact){
-//        nameField.sendKeys(contact.getName());
-//        lastNameField.sendKeys(contact.getLastName());
-//        /**
-//         * Это условие проверяет длину телефонного номера контакта.
-//         * Если длина находится в диапазоне от 10 до 15 символов,
-//         * тогда номер телефона отправляется в соответствующее поле веб-формы.
-//         * Если длина не соответствует ожидаемому диапазону, выбрасывается исключение IllegalArgumentException.
-//         */
-//        if(contact.getPhone().length()>=10 && contact.getPhone().length()<=15){
-//            phoneField.sendKeys(contact.getPhone());
-//        } else{
-//            throw new IllegalArgumentException("The phone number issue...");
-//        }
-//
-//        emailField.sendKeys(contact.getEmail());
-//        addressField.sendKeys(contact.getAddress());
-//        descriptionField.sendKeys(contact.getDescription());
+//    public void fillFormAndSave(){
+//        nameField.sendKeys(NameAndLastnameGenerator.generateName());
+//        lastNameField.sendKeys(NameAndLastnameGenerator.generateLastName());
+//        phoneField.sendKeys(PhoneNumberGenerator.generatePhoneNumber());
+//        emailField.sendKeys(EmailGenerator.generateEmail(4,3,2));
+//        addressField.sendKeys(AddressGenerator.generateAddress());
+//       // descriptionField.sendKeys("PM");
 //
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        //  Этот код использует объект WebDriverWait для ожидания, пока кнопка "Save" на веб-странице не станет видимой.
-//        //  Затем она сохраняется в переменную saveButton.
 //        WebElement saveButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//b[contains(text(),'Save')]")));
 //        saveButton.click();
 //    }
+
+    public void fillFormAndSave1(Contact contact){
+        nameField.sendKeys(contact.getName());
+        lastNameField.sendKeys(contact.getLastName());
+        /**
+         * Это условие проверяет длину телефонного номера контакта.
+         * Если длина находится в диапазоне от 10 до 15 символов,
+         * тогда номер телефона отправляется в соответствующее поле веб-формы.
+         * Если длина не соответствует ожидаемому диапазону, выбрасывается исключение IllegalArgumentException.
+         */
+        if(contact.getPhone().length()>=10 && contact.getPhone().length()<=15){
+            phoneField.sendKeys(contact.getPhone());
+        } else{
+            throw new IllegalArgumentException("The phone number issue...");
+        }
+
+        emailField.sendKeys(contact.getEmail());
+        addressField.sendKeys(contact.getAddress());
+        descriptionField.sendKeys(contact.getDescription());
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //  Этот код использует объект WebDriverWait для ожидания, пока кнопка "Save" на веб-странице не станет видимой.
+        //  Затем она сохраняется в переменную saveButton.
+        WebElement saveButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//b[contains(text(),'Save')]")));
+        saveButton.click();
+    }
 }

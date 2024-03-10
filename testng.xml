@@ -3,11 +3,20 @@
 <suite name="Suite1">
 
     <parameter name="browser" value="firefox"></parameter>
-    <test name="MyFirstTest">
+    <test name="FirefoxTest">
         <classes>
             <class name="tests.PhonebookTest">
                 <methods>
-                    <include name="phoneBookTest_001"/>
+                    <include name="loginOfAnExistingUserAddContact"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="ChromeTest">
+        <classes>
+            <class name="tests.PhonebookTest">
+                <methods>
+                    <include name="loginOfAnExistingUserAddContact"/>
                 </methods>
             </class>
         </classes>

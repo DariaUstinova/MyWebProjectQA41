@@ -1,18 +1,18 @@
 package tests;
 
 import config.BaseTest;
-import helpers.AlertHandler;
-import helpers.TopMenuItem;
+import helpers.*;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import model.Contact;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.AddPage;
-import pages.BasePage;
-import pages.LoginPage;
-import pages.MainPage;
+import pages.*;
 
 public class PhonebookTest extends BaseTest {
 
@@ -31,27 +31,43 @@ public class PhonebookTest extends BaseTest {
         boolean isAlertHandled = AlertHandler.handleAlert(alert, expectedString);
         Assert.assertTrue(isAlertHandled);
     }
-    @Test(description = "The test checks successful Login " +
-            "and creation of a new contact on ContactsPage.")
-    @Parameters("browser")
-    public void LoginPossitive(@Optional("chrome") String browser) throws InterruptedException {
-        Allure.description("User's login");
+
+    @Test
+    @Description("User already exist. Login and add contact.")
+    public void loginOfAnExistingUserAddContact() throws InterruptedException {
+        Allure.description("User already exist. Login and add contact.!");
 
         MainPage mainPage = new MainPage(getDriver());
-        Allure.step("Click by Login button");
-        LoginPage loginPage = mainPage.openTopMenu(TopMenuItem.LOGIN.toString());
-        Allure.step("Click by Login button");
-        BasePage basePage = loginPage.fillEmailField("myemailtest@mail.com").fillPasswordField("Testtest84!").clickByLoginButton();
+        Allure.step("Step 1");
+        LoginPage lPage = mainPage.openTopMenu(TopMenuItem.LOGIN.toString());
+        Allure.step("Step 2");
+        lPage.fillEmailField(PropertiesReader.getProperty("existingUserEmail")).fillPasswordField(PropertiesReader.getProperty("existingUserPassword")).clickByLoginButton();
 
+        Allure.step("Step 3");
+        MainPage.openTopMenu(TopMenuItem.ADD.toString());
+        AddPage addPage = new AddPage(getDriver());
+        Contact newContact = new Contact(NameAndLastnameGenerator.generateName(),
+                NameAndLastnameGenerator.generateLastName(),
+                PhoneNumberGenerator.generatePhoneNumber(),
+                EmailGenerator.generateEmail(10,5,3),
+                AddressGenerator.generateAddress(),
+                "new description");
+        newContact.toString();
+        addPage.fillFormAndSave1(newContact);
+        ContactsPage contactsPage = new ContactsPage(getDriver());
+        Assert.assertTrue(contactsPage.getDataFromContactList(newContact));
+        TakeScreen.takeScreenshot("screen");
+        Thread.sleep(3000);
 
-        AddPage addPage =  mainPage.openTopMenu(TopMenuItem.ADD.toString());
-        //new AddPage(getDriver());
-        addPage.fillFormAndSave();
-
-
-
-
-
+    }
+    @Test
+    public void registrationPositive(@Optional("chrome") String browser) throws InterruptedException{
+        MainPage mainPage = new MainPage(getDriver());
+        LoginPage lp = mainPage.openTopMenu(TopMenuItem.LOGIN.toString());
+        lp.fillEmailField("test224@test.com").fillPasswordField("Test123!").clickByRegistrationButton();
+        ContactsPage cp = new ContactsPage(getDriver());
+        Thread.sleep(3000);
+        Assert.assertTrue(getDriver().findElements(By.tagName("button")).size()>0);
 
     }
 

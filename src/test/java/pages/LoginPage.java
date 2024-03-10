@@ -33,11 +33,13 @@ public class LoginPage extends BasePage {
     public LoginPage fillEmailField(String email) {// Этот метод заполняет поле электронной почты на веб-странице.
         // Он принимает строку email, переданную в качестве аргумента, и использует метод sendKeys(),
         // чтобы ввести эту строку в поле emailField.
+        emailField.clear();
         emailField.sendKeys(email);
         return this; // Затем метод возвращает объект LoginPage, что позволяет использовать этот метод в цепочке вызовов
     }
 
     public LoginPage fillPasswordField(String password){
+        passwordField.clear();
         passwordField.sendKeys(password);
         return this;
     }

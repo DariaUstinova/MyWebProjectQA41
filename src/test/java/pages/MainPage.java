@@ -21,7 +21,7 @@ public MainPage(WebDriver driver){// конструктор класса MainPag
      * @return Любой тип, наследованый от BasePage
      * @param <T> Это обобщённый тип данных.
      */
-    public <T extends BasePage> T openTopMenu(String topMenuItem){
+    public static <T extends BasePage> T openTopMenu(String topMenuItem){
         WebElement menuItem = driver.findElement(By.xpath("//a[contains(text(),'"+topMenuItem+"')]"));
         menuItem.click();
 

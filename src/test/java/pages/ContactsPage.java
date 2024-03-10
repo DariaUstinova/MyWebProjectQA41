@@ -35,7 +35,7 @@ public class ContactsPage extends BasePage {
         // Ожидается появление элемента с именем контакта, переданного в методе, используя XPath.
         nameInContact.click();
         WebElement editButton = driver.findElement(By.xpath("//button[contains(text(),'Edit')]"));
-        editButton.click();
+        editButton.click(); //no edditing. we want to check (proverit )the created contact (pravilno li sozdalsa)
 // находим элементы веб-страницы для каждого поля контакта (имя, фамилия, телефон, email, адрес и описание) и получаем их значения с помощью метода getAttribute("value").
         WebElement elementName = driver.findElement(By.xpath("//input[@placeholder='Name']"));
         String elementNameValue = elementName.getAttribute("value");
