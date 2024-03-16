@@ -16,14 +16,14 @@ public class TakeScreen {
     @Attachment(value = "Failure screenshot", type = "image/png")
     public static byte[] takeScreenshot(String testName) {
 
-        try {
-            String screenshotName = testName + "_" + System.currentTimeMillis() + ".png";
-            File screenShotFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE); //privedenie objecta drivera to interfase TakeScreenShot
-            FileUtils.copyFile(screenShotFile, new File("screenshots/" + screenshotName));
-            return Files.readAllBytes(Paths.get("screenshots\\" + screenshotName)); //returns array of Bytes of this image to File
-
-        } catch (IOException e) {
+        try{String screenshotName = testName+"_"+System.currentTimeMillis()+".png";
+            File screenshotFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(screenshotFile, new File("screenshots/"+screenshotName));
+            return Files.readAllBytes(Paths.get("screenshots\\"+screenshotName));
+        }
+        catch (IOException e){
             return null;
         }
     }
+
 }

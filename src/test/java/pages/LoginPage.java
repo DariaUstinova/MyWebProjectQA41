@@ -23,6 +23,8 @@ public class LoginPage extends BasePage {
     WebElement passwordField;
     @FindBy(xpath = "//button[@name='login']")
     WebElement loginButton;
+    @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
+    WebElement signOutButton;
 
     public LoginPage(WebDriver driver) {
         setDriver(driver);
@@ -47,6 +49,9 @@ public class LoginPage extends BasePage {
         // Он вызывает метод click() для registrationButton.
         registrationButton.click();
         return getAlertIfPresent();
+    } public void  clickByRegistrationButton2(){ // Этот метод кликает по кнопке регистрации на веб-странице.
+        // Он вызывает метод click() для registrationButton.
+        registrationButton.click();
     }
     public BasePage clickByLoginButton(){
         loginButton.click();
@@ -76,5 +81,9 @@ public class LoginPage extends BasePage {
             System.out.println("Alert issue "+e);
             return  null; // Возвращается null, что означает, что всплывающего окна не было обнаружено.
         }
+    }
+
+    public void clickBySignOutButton(){
+        signOutButton.click();
     }
 }
